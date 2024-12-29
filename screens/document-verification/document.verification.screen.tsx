@@ -47,8 +47,8 @@ export default function DocumentVerificationScreen() {
     };
 
     await axios
-      .post(`${process.env.EXPO_PUBLIC_SERVER_URI}/driver/send-otp`, {
-        phone_number: `+${driverData.phone_number}`,
+      .post(`http://192.168.166.181:8000/api/v1/driver/send-otp`, {
+        phone_number: "+2349136335556",
       })
       .then((res) => {
         router.push({
@@ -159,7 +159,8 @@ export default function DocumentVerificationScreen() {
             </View>
             <View style={styles.margin}>
               <Button
-                onPress={() => handleSubmit()}
+                // onPress={() => handleSubmit()}
+                onPress={() => router.push("/(tabs)/home")}
                 title={"Submit"}
                 height={windowHeight(30)}
                 backgroundColor={color.buttonBg}

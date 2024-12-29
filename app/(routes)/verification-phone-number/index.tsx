@@ -29,8 +29,8 @@ export default function PhoneNumberVerificationScreen() {
         setLoader(true);
         const otpNumbers = `${otp}`;
         await axios
-          .post(`${process.env.EXPO_PUBLIC_SERVER_URI}/driver/verify-otp`, {
-            phone_number: driver.phone_number,
+          .post(`http://192.168.166.181:8000/api/v1/driver/verify-otp`, {
+            phone_number: "+2349136335556",
             otp: otpNumbers,
             ...driver,
           })
@@ -56,7 +56,7 @@ export default function PhoneNumberVerificationScreen() {
         const otpNumbers = `${otp}`;
         await axios
           .post(`${process.env.EXPO_PUBLIC_SERVER_URI}/driver/login`, {
-            phone_number: driver.phone_number,
+            phone_number: "+2349136335556",
             otp: otpNumbers,
           })
           .then(async (res) => {
@@ -85,7 +85,7 @@ export default function PhoneNumberVerificationScreen() {
           />
           <OTPTextInput
             handleTextChange={(code) => setOtp(code)}
-            inputCount={4}
+            inputCount={6}
             textInputStyle={style.otpTextInput}
             tintColor={color.subtitle}
             autoFocus={false}
@@ -94,7 +94,8 @@ export default function PhoneNumberVerificationScreen() {
             <Button
               title="Verify"
               height={windowHeight(30)}
-              onPress={() => handleSubmit()}
+              // onPress={() => handleSubmit()}
+              onPress={() => router.push("/(tabs)/home")}
               disabled={loader}
             />
           </View>
