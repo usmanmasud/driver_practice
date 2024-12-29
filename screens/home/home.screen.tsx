@@ -387,7 +387,7 @@ export default function HomeScreen() {
   return (
     <View style={[external.fx_1]}>
       <View style={styles.spaceBelow}>
-        <Header isOn={true} toggleSwitch={() => handleStatusChange()} />
+        <Header isOn={isOn} toggleSwitch={() => handleStatusChange()} />
         <FlatList
           data={rideData}
           numColumns={2}
