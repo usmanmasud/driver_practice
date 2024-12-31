@@ -34,3 +34,22 @@ wss.on("connection", (ws) => {
     } catch (error) {}
   });
 });
+
+const findNearbyDrivers = (userLat, userLon) => {
+  return Object.entries(drivers)
+    .filter(([id, location]) => {
+      const distance = geolib.getDistance(
+        {
+          latitude: userLat,
+          longitude: userLon,
+        },
+        location
+      );
+      return distance <= 5000; //5km
+    })
+    .map(([id, location]) => ({ id, ...location }));
+};
+
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
+});
